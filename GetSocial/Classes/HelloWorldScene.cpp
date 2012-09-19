@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "ObjCCalls/ObjCCalls.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -29,6 +30,11 @@ bool HelloWorld::init()
         return false;
     }
 
+    std::string datetime = ObjCCalls::MakeDateTimeString();
+    CCLog("%s", datetime.c_str());
+    
+    ObjCCalls::trySendATweet();
+    
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
