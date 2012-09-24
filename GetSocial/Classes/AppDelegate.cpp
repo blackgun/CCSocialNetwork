@@ -1,3 +1,11 @@
+//
+//  GetSocialAppDelegate.cpp
+//  GetSocial
+//
+//  Created by Mikel Eizagirre on 12/09/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
+//
+
 #include "AppDelegate.h"
 
 #include "cocos2d.h"
@@ -31,7 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     CCScene *pScene = HelloWorld::scene();
-
+    
     // run
     pDirector->runWithScene(pScene);
 
