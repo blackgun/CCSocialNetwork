@@ -120,14 +120,24 @@ bool HelloWorld::init()
 
 void HelloWorld::trySendAnEmail(CCObject* pSender)
 {
-	CCLOG("HelloWorld: try to send an email");
-    //ObjCCalls::trySendAnEMail();
+	CCLog("HelloWorld: try to send an email");
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//android part code here
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	ObjCCalls::trySendAnEMail();
+#endif
 }
 
 void HelloWorld::trySendATweet(CCObject* pSender)
 {
-	CCLOG("HelloWorld: try to send a tweet");
-    //ObjCCalls::trySendATweet();
+	CCLog("HelloWorld: try to send a tweet");
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//android part code here
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	ObjCCalls::trySendATweet();
+#endif
 }
 
 void HelloWorld::tweetCallback(int statusCode)
@@ -149,9 +159,14 @@ void HelloWorld::tweetCallback(int statusCode)
 }
 
 void HelloWorld::tryPostOnFB(CCObject* pSender){
-    CCLOG("HelloWorld: try to post on Facebook");
-    //int score = atoi (sLabel->getString());
-   // ObjCCalls::tryPostOnFB(score);
+    CCLog("HelloWorld: try to post on Facebook");
+    int score = atoi (sLabel->getString());
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//android part code here
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    ObjCCalls::tryPostOnFB(score);
+#endif
+
 }
 
 void HelloWorld::updateMessageLabel(const char *text)
