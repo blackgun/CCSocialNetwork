@@ -183,3 +183,13 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
     exit(0);
 #endif
 }
+
+void HelloWorld::testCallFromJava()
+{
+    CCLog("testCallFromJava");
+}
+void HelloWorld::testCallToJava()
+{
+	CCLog("testCallToJava");
+}
+

@@ -42,4 +42,9 @@ void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thi
     }
 }
 
+void Java_tutorial_getsocial_meizpipero_GetSocial_testCallFromJava(JNIEnv*  env, jobject thiz)
+{
+	CCLog("Java_tutorial_getsocial_meizpipero_GetSocial_testCallFromJava");
+}
+
 }

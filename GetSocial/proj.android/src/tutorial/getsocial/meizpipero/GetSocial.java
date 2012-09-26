@@ -75,6 +75,8 @@ public class GetSocial extends Cocos2dxActivity
 		super.onCreate(savedInstanceState);
 		//
 		this.facebookConnector = new FacebookConnector(FACEBOOK_APPID, this, getApplicationContext(), new String[] {FACEBOOK_PERMISSION});
+		
+		
 		//
 		/* POST
 		 * postMessage();
@@ -123,6 +125,10 @@ public class GetSocial extends Cocos2dxActivity
 			Log.d("activity", "don't support gles2.0");
 			finish();
 		}	
+
+		this.testCallFromJava();
+		
+		//postMessage();
 	}
 	
 	 @Override
@@ -145,6 +151,8 @@ public class GetSocial extends Cocos2dxActivity
 	     return (info.reqGlEsVersion >= 0x20000);
 	 }
 	
+	 private native void testCallFromJava();
+	 
      static {
          System.loadLibrary("game");
      }

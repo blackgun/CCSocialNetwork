@@ -16,6 +16,10 @@ public:
     
     static HelloWorld *instance;
     
+    // test
+    void testCallFromJava();
+    void testCallToJava();
+
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
     
