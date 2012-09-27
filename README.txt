@@ -1,7 +1,7 @@
 ----------------------------------------
 GET SOCIAL
 ----------------------------------------
-License LGPL, read LICENCE.txt. 
+License LGPL, read LICENSE.txt. 
 You can share this code, and use it with out warranty.
 
 ----- NO ESTABLE - NO WORKING (YET)
