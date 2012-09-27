@@ -1,7 +1,13 @@
+// Includes
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+// iOS Includes
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "ObjCCalls/ObjCCalls.h"
+#endif
+// Android Includes
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "JNICalls/InterfaceJNI.h"
 #endif
 
 
@@ -162,7 +168,7 @@ void HelloWorld::tryPostOnFB(CCObject* pSender){
     CCLog("HelloWorld: try to post on Facebook");
     int score = atoi (sLabel->getString());
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//android part code here
+    InterfaceJNI::postMessageToFB();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     ObjCCalls::tryPostOnFB(score);
 #endif
