@@ -53,7 +53,7 @@ public class GetSocial extends Cocos2dxActivity
 
 {
 
-	private static final String FACEBOOK_APPID = "317764948310799";
+	private static final String FACEBOOK_APPID = "317764948310799";	// Pipero Test app
 	private static final String FACEBOOK_PERMISSION = "publish_stream";
 	private static final String TAG = "FacebookSample";
 	private static final String MSG = "Message from FacebookSample";
