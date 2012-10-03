@@ -27,9 +27,9 @@ iOS Status
 ANDROID Status
 ------------------------
 
-[ ] - Facebook   1/2; 
-[ ] - Twitter; 
-[ ] - E-Mail; 
+[ok] - Facebook;
+[ok] - Twitter; 
+[ok] - E-Mail; 
 [  ] - Check internet connection;
 
 iOS Instructions
