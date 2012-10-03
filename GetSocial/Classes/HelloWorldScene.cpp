@@ -129,7 +129,7 @@ void HelloWorld::trySendAnEmail(CCObject* pSender)
 	CCLog("HelloWorld: try to send an email");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//android part code here
+	InterfaceJNI::postMessageEMail();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	ObjCCalls::trySendAnEMail();
 #endif
@@ -140,7 +140,7 @@ void HelloWorld::trySendATweet(CCObject* pSender)
 	CCLog("HelloWorld: try to send a tweet");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//android part code here
+	InterfaceJNI::postMessageToTweet();
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	ObjCCalls::trySendATweet();
 #endif

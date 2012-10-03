@@ -41,6 +41,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ConfigurationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -58,33 +59,29 @@ public class GetSocial extends Cocos2dxActivity
 	private static final String TAG = "FacebookSample";
 	private static final String MSG = "Message from FacebookSample";
 	
-	private final Handler mFacebookHandler = new Handler();
+	private final static Handler mFacebookHandler = new Handler();
 	private TextView loginStatus;
-	private FacebookConnector facebookConnector;
+	static private FacebookConnector facebookConnector;
 	
-	final Runnable mUpdateFacebookNotification = new Runnable() 
+	static Context myContext;
+	
+	final static Runnable mUpdateFacebookNotification = new Runnable() 
 	{
         public void run() 
         {
-        	Toast.makeText(getBaseContext(), "Facebook updated !", Toast.LENGTH_LONG).show();
+        	//Toast.makeText(getBaseContext(), "Facebook updated !", Toast.LENGTH_LONG).show();
         }
     };
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
+		myContext = getApplicationContext();
+		
 		//
 		this.facebookConnector = new FacebookConnector(FACEBOOK_APPID, this, getApplicationContext(), new String[] {FACEBOOK_PERMISSION});
 		
-		
-		//
-		/* POST
-		 * postMessage();
-		 */
-		/* CLEAR
-		 * clearCredentials();
-            updateLoginStatus();
-		 */
 		if (detectOpenGLES20()) 
 		{
 			// get the packageName,it's used to set the resource path
@@ -126,8 +123,10 @@ public class GetSocial extends Cocos2dxActivity
 			finish();
 		}	
 
+		// Make a Call to Java
 		this.testCallFromJava();
 		
+		//tweet();
 		//postMessage();
 	}
 	
@@ -153,12 +152,14 @@ public class GetSocial extends Cocos2dxActivity
 	
 	 private native void testCallFromJava();
 	 
-     static {
+     static 
+     {
          System.loadLibrary("game");
      }
      
      //
-     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+     {
  		this.facebookConnector.getFacebook().authorizeCallback(requestCode, resultCode, data);
  	}
      
@@ -167,24 +168,32 @@ public class GetSocial extends Cocos2dxActivity
  	}
  	
 
- 	private String getFacebookMsg() {
+ 	private static String getFacebookMsg() 
+ 	{
  		return MSG + " at " + new Date().toLocaleString();
  	}	
  	
- 	public void postMessage() {
- 		
- 		if (facebookConnector.getFacebook().isSessionValid()) {
+ 	static public void postMessage() 
+ 	{
+ 		Log.d("activity", "postMessage (FB) on Java");
+ 		if (facebookConnector.getFacebook().isSessionValid()) 
+ 		{
  			postMessageInThread();
- 		} else {
- 			SessionEvents.AuthListener listener = new SessionEvents.AuthListener() {
+ 		} 
+ 		else 
+ 		{
+ 			SessionEvents.AuthListener listener = new SessionEvents.AuthListener() 
+ 			{
  				
  				@Override
- 				public void onAuthSucceed() {
+ 				public void onAuthSucceed() 
+ 				{
  					postMessageInThread();
  				}
  				
  				@Override
- 				public void onAuthFail(String error) {
+ 				public void onAuthFail(String error) 
+ 				{
  					
  				}
  			};
@@ -193,7 +202,8 @@ public class GetSocial extends Cocos2dxActivity
  		}
  	}
 
- 	private void postMessageInThread() {
+ 	private static void postMessageInThread() 
+ 	{
  		Thread t = new Thread() {
  			public void run() {
  		    	
@@ -208,13 +218,41 @@ public class GetSocial extends Cocos2dxActivity
  		t.start();
  	}
 
- 	private void clearCredentials() {
- 		try {
+ 	private void clearCredentials() 
+ 	{
+ 		try 
+ 		{
  			facebookConnector.getFacebook().logout(getApplicationContext());
- 		} catch (MalformedURLException e) {
+ 		} 
+ 		catch (MalformedURLException e) 
+ 		{
  			e.printStackTrace();
- 		} catch (IOException e) {
+ 		} 
+ 		catch (IOException e) 
+ 		{
  			e.printStackTrace();
  		}
+ 	}
+ 	private static void tweet()
+ 	{
+ 		Log.d("activity", "Tweet on Java");
+ 		String score = "123";
+ 		String tweetUrl = "https://twitter.com/intent/tweet?text=Hello ! I have just got " + score + " points in mygame for Android !!!!";
+ 		Uri uri = Uri.parse(tweetUrl);
+ 		Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+ 		myContext.startActivity(i);
+ 	}
+ 	private static void sendEMail()
+ 	{
+ 		Log.d("activity", "Send a email on Java");
+ 		Intent i = new Intent(Intent.ACTION_SEND);
+ 		//i.setType("text/plain"); //use this line for testing in the emulator
+ 		i.setType("message/rfc822") ; // use from live device
+ 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+ 		i.putExtra(Intent.EXTRA_EMAIL, new String[]{"test@gmail.com"});
+ 		i.putExtra(Intent.EXTRA_SUBJECT,"Subject goes here");
+ 		i.putExtra(Intent.EXTRA_TEXT,"Test body goes here");
+ 		myContext.startActivity(i);
  	}
 }

@@ -7,6 +7,8 @@ class InterfaceJNI
 {
 public:
 	static void postMessageToFB();
+	static void postMessageEMail();
+	static void postMessageToTweet();
     
 protected:
 
