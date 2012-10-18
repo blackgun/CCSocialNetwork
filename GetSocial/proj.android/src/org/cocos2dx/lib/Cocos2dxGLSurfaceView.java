@@ -61,7 +61,6 @@ class TextInputWraper implements TextWatcher, OnEditorActionListener {
 		mOriginText = text;
 	}
 	
-	@Override
 	public void afterTextChanged(Editable s) {
 		if (isFullScreenEdit()) {
 			return;
@@ -83,18 +82,15 @@ class TextInputWraper implements TextWatcher, OnEditorActionListener {
 		mText = s.toString();
 	}
 
-	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
 		LogD("beforeTextChanged(" + s + ")start: " + start + ",count: " + count + ",after: " + after);
 		mText = s.toString();
 	}
 
-	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
 
-	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		if (mMainView.getTextField() == v && isFullScreenEdit()) {
 			// user press the action button, delete all old text and insert new text
@@ -189,7 +185,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     
     public void onPause(){
     	queueEvent(new Runnable() {
-            @Override
             public void run() {
                 mRenderer.handleOnPause();
             }
@@ -202,7 +197,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     	super.onResume();
     	
     	queueEvent(new Runnable() {
-            @Override
             public void run() {
                 mRenderer.handleOnResume();
             }
@@ -251,7 +245,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     
     public void insertText(final String text) {
         queueEvent(new Runnable() {
-            @Override
             public void run() {
                 mRenderer.handleInsertText(text);
             }
@@ -260,7 +253,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     
     public void deleteBackward() {
         queueEvent(new Runnable() {
-            @Override
             public void run() {
                 mRenderer.handleDeleteBackward();
             }
@@ -292,7 +284,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
             final float yPointerDown = event.getY(indexPointerDown);
 
             queueEvent(new Runnable() {
-                @Override
                 public void run() {
                     mRenderer.handleActionDown(idPointerDown, xPointerDown, yPointerDown);
                 }
@@ -306,7 +297,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
             final float yDown = ys[0];
             
             queueEvent(new Runnable() {
-                @Override
                 public void run() {
                     mRenderer.handleActionDown(idDown, xDown, yDown);
                 }
@@ -315,7 +305,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 
         case MotionEvent.ACTION_MOVE:
             queueEvent(new Runnable() {
-                @Override
                 public void run() {
                     mRenderer.handleActionMove(ids, xs, ys);
                 }
@@ -329,7 +318,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
             final float yPointerUp = event.getY(indexPointUp);
             
             queueEvent(new Runnable() {
-                @Override
                 public void run() {
                     mRenderer.handleActionUp(idPointerUp, xPointerUp, yPointerUp);
                 }
@@ -343,7 +331,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
             final float yUp = ys[0];
             
             queueEvent(new Runnable() {
-                @Override
                 public void run() {
                     mRenderer.handleActionUp(idUp, xUp, yUp);
                 }
@@ -352,8 +339,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
 
         case MotionEvent.ACTION_CANCEL:
             queueEvent(new Runnable() {
-               @Override
-                public void run() {
+               public void run() {
                     mRenderer.handleActionCancel(ids, xs, ys);
                 }
             });
@@ -378,7 +364,6 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     	final int kc = keyCode;
     	if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
     		queueEvent(new Runnable() {
-	            @Override
 	            public void run() {
 	                mRenderer.handleKeyDown(kc);
 	            }

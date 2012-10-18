@@ -297,7 +297,6 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 		}, 200);
 		 
 		mInputEditText.setOnEditorActionListener(new OnEditorActionListener() {
-		     @Override
 		     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 	        	 // if user didn't set keyboard type,
 	        	 // this callback will be invoked twice with 'KeyEvent.ACTION_DOWN' and 'KeyEvent.ACTION_UP'

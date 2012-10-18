@@ -185,13 +185,11 @@ public class GetSocial extends Cocos2dxActivity
  			SessionEvents.AuthListener listener = new SessionEvents.AuthListener() 
  			{
  				
- 				@Override
  				public void onAuthSucceed() 
  				{
  					postMessageInThread();
  				}
  				
- 				@Override
  				public void onAuthFail(String error) 
  				{
  					

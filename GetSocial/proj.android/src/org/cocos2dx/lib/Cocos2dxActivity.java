@@ -304,7 +304,6 @@ public class Cocos2dxActivity extends Activity{
             // pass utf8 string from editbox activity to native.
         	// Should invoke native method in GL thread.
         	mGLView.queueEvent(new Runnable() {
-                @Override
                 public void run() {
                 	nativeSetEditboxText(bytesUTF8);
                 }
